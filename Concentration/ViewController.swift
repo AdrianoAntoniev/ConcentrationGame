@@ -12,13 +12,19 @@ class ViewController: UIViewController {
     @IBOutlet weak var flipCountLabel: UILabel!
     @IBOutlet var cardButtons: [UIButton]!
     @IBOutlet weak var newGameButton: UIButton!
-    
     lazy var game = Concentration(numberOfPairsOfCards: (cardButtons.count + 1) / 2)
+    
+    var theme: GameTheme = GameThemes.getThemeForGame()
+    var emojiChoices: [String] = []
     
     var flipCount = 0 {
         didSet {
             flipCountLabel.text = "Flips: \(flipCount)"
         }
+    }
+    
+    override func viewDidLoad() {
+        restartView()
     }
     
     @IBAction func touchCard(_ sender: UIButton) {
@@ -44,12 +50,11 @@ class ViewController: UIViewController {
                 }
             } else {
                 button.setTitle("", for: .normal)
-                button.backgroundColor = card.isMatched ? #colorLiteral(red: 1, green: 0.580126236, blue: 0.01286631583, alpha: 0) : #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1)
+                button.backgroundColor = card.isMatched ? #colorLiteral(red: 1, green: 0.580126236, blue: 0.01286631583, alpha: 0) : theme.buttonBackgroundColorAndLabelTextColor
             }
         }
     }
-        
-    var emojiChoices = ["🦇", "😱", "🙀", "😈", "🎃", "👻", "🍭", "🍬", "🍎"]
+    
     var emoji = [Int: String]()
     
     func emoji(for card: Card) -> String {
@@ -64,9 +69,26 @@ class ViewController: UIViewController {
     
     @IBAction func newGamePressed(_ sender: UIButton) {
         game.restart()
+        self.restartView()
         self.flipCount = 0
-        
+        self.emoji = [Int: String]()
         self.updateViewFromModel()
+    }
+    
+    func restartView() {
+        theme = GameThemes.getThemeForGame()
+        
+        view.backgroundColor = theme.backgroundColor
+        emojiChoices = theme.emojiChoice
+        
+        cardButtons.forEach { (card) in
+            card.backgroundColor = theme.buttonBackgroundColorAndLabelTextColor
+        }
+        
+        newGameButton.backgroundColor = theme.backgroundColor
+        newGameButton.setTitleColor(theme.buttonBackgroundColorAndLabelTextColor, for: .normal)
+        flipCountLabel.backgroundColor = theme.backgroundColor
+        flipCountLabel.textColor = theme.buttonBackgroundColorAndLabelTextColor
     }
 }
 

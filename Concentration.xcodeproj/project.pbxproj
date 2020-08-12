@@ -15,6 +15,8 @@
 		D7D3A8FA24E1965800E53250 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7D3A8F824E1965800E53250 /* LaunchScreen.storyboard */; };
 		D7D3A90224E1F25900E53250 /* Concentration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D3A90124E1F25900E53250 /* Concentration.swift */; };
 		D7D3A90424E1F31100E53250 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D3A90324E1F31100E53250 /* Card.swift */; };
+		D7D3A90624E3109900E53250 /* GameTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D3A90524E3109900E53250 /* GameTheme.swift */; };
+		D7D3A90824E34C9F00E53250 /* GameThemes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D3A90724E34C9F00E53250 /* GameThemes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		D7D3A8FB24E1965800E53250 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D7D3A90124E1F25900E53250 /* Concentration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Concentration.swift; sourceTree = "<group>"; };
 		D7D3A90324E1F31100E53250 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		D7D3A90524E3109900E53250 /* GameTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTheme.swift; sourceTree = "<group>"; };
+		D7D3A90724E34C9F00E53250 /* GameThemes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameThemes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +68,8 @@
 				D7D3A8EF24E1965700E53250 /* SceneDelegate.swift */,
 				D7D3A8F124E1965700E53250 /* ViewController.swift */,
 				D7D3A8F324E1965700E53250 /* Main.storyboard */,
+				D7D3A90524E3109900E53250 /* GameTheme.swift */,
+				D7D3A90724E34C9F00E53250 /* GameThemes.swift */,
 				D7D3A8F624E1965800E53250 /* Assets.xcassets */,
 				D7D3A8F824E1965800E53250 /* LaunchScreen.storyboard */,
 				D7D3A8FB24E1965800E53250 /* Info.plist */,
@@ -145,6 +151,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D7D3A8F224E1965700E53250 /* ViewController.swift in Sources */,
+				D7D3A90624E3109900E53250 /* GameTheme.swift in Sources */,
+				D7D3A90824E34C9F00E53250 /* GameThemes.swift in Sources */,
 				D7D3A90224E1F25900E53250 /* Concentration.swift in Sources */,
 				D7D3A90424E1F31100E53250 /* Card.swift in Sources */,
 				D7D3A8EE24E1965700E53250 /* AppDelegate.swift in Sources */,
