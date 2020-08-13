@@ -11,17 +11,19 @@ import Foundation
 class Concentration {
     var cards = [Card]()
     var indexOfOneAndOnlyFaceUpCard: Int?
-    
     var cardsRemaining = 0
+    var cardsFlippedOnce = [Int]()
+    private var score = 0
+    
     init(numberOfPairsOfCards: Int) {
-        self.cardsRemaining = numberOfPairsOfCards + 1
+        self.cardsRemaining = numberOfPairsOfCards
         
         for _ in 1...numberOfPairsOfCards {
             let card = Card()
             
             cards += [card, card]
         }
-        cards.shuffle()
+        //cards.shuffle()
     }
     
     func chooseCard(at index: Int) {
@@ -32,6 +34,22 @@ class Concentration {
                     cards[index].isMatched = true
                     
                     self.cardsRemaining -= 1
+                    
+                    self.score += 2
+                }
+                // Coloquei aqui esta linha para colocar duas cartas diferentes no array (cartas erradas)
+                else {
+                    if !cardsFlippedOnce.contains(cards[matchIndex].identifier) {
+                        cardsFlippedOnce.append(cards[matchIndex].identifier)
+                    } else {
+                        score -= 1
+                    }
+                    
+                    if !cardsFlippedOnce.contains(cards[index].identifier) {
+                        cardsFlippedOnce.append(cards[index].identifier)
+                    } else {
+                        self.score -= 1
+                    }
                 }
                 cards[index].isFacedUp = true
                 indexOfOneAndOnlyFaceUpCard = nil
@@ -55,5 +73,15 @@ class Concentration {
             cards[index].isMatched = false
         }
         
+        self.cardsRemaining = (cards.count / 2) + 1
+        
+    }
+    
+    func getScore(gameIsRestarted: Bool) -> Int {
+        if gameIsRestarted {
+            self.score = 0
+        }
+        
+        return self.score
     }
 }

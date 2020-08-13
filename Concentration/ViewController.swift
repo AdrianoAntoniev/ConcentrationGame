@@ -12,14 +12,23 @@ class ViewController: UIViewController {
     @IBOutlet weak var flipCountLabel: UILabel!
     @IBOutlet var cardButtons: [UIButton]!
     @IBOutlet weak var newGameButton: UIButton!
+    @IBOutlet weak var scoreLabel: UILabel!
+    
     lazy var game = Concentration(numberOfPairsOfCards: (cardButtons.count + 1) / 2)
     
     var theme: GameTheme = GameThemes.getThemeForGame()
     var emojiChoices: [String] = []
+    var isEndGame = false
     
     var flipCount = 0 {
         didSet {
             flipCountLabel.text = "Flips: \(flipCount)"
+        }
+    }
+    
+    var score = 0 {
+        didSet {
+            scoreLabel.text = "Score: \(score)"
         }
     }
     
@@ -32,7 +41,15 @@ class ViewController: UIViewController {
             game.chooseCard(at: cardNumber)
             updateViewFromModel()
             
-            flipCount += 1
+            if !isEndGame {
+                flipCount += 1
+                score = game.getScore(gameIsRestarted: false)
+            }
+            
+            if game.areAllCardsFlipped() {
+                flipCountLabel.text = "You got \(game.getScore(gameIsRestarted: false)) points!"
+                isEndGame = true
+            }
         }
     }
     
@@ -43,11 +60,6 @@ class ViewController: UIViewController {
             if card.isFacedUp {
                 button.setTitle(emoji(for: card), for: .normal)
                 button.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-                
-                if game.areAllCardsFlipped() {
-                    flipCountLabel.text = "You made \(flipCount) flips."
-                    break
-                }
             } else {
                 button.setTitle("", for: .normal)
                 button.backgroundColor = card.isMatched ? #colorLiteral(red: 1, green: 0.580126236, blue: 0.01286631583, alpha: 0) : theme.buttonBackgroundColorAndLabelTextColor
@@ -71,12 +83,14 @@ class ViewController: UIViewController {
         game.restart()
         self.restartView()
         self.flipCount = 0
-        self.emoji = [Int: String]()
+        emoji = [Int: String]()
         self.updateViewFromModel()
     }
     
     func restartView() {
+        isEndGame = false
         theme = GameThemes.getThemeForGame()
+        score = game.getScore(gameIsRestarted: true)
         
         view.backgroundColor = theme.backgroundColor
         emojiChoices = theme.emojiChoice
@@ -89,6 +103,8 @@ class ViewController: UIViewController {
         newGameButton.setTitleColor(theme.buttonBackgroundColorAndLabelTextColor, for: .normal)
         flipCountLabel.backgroundColor = theme.backgroundColor
         flipCountLabel.textColor = theme.buttonBackgroundColorAndLabelTextColor
+        scoreLabel.backgroundColor = theme.backgroundColor
+        scoreLabel.textColor = theme.buttonBackgroundColorAndLabelTextColor
     }
 }
 
