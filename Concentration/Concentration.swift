@@ -23,7 +23,7 @@ class Concentration {
             
             cards += [card, card]
         }
-        //cards.shuffle()
+        cards.shuffle()
     }
     
     func chooseCard(at index: Int) {
@@ -74,6 +74,7 @@ class Concentration {
         }
         
         self.cardsRemaining = (cards.count / 2) + 1
+        cardsFlippedOnce = [Int]()
         
     }
     
