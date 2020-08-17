@@ -11,7 +11,7 @@ import UIKit
 struct GameTheme {
     var backgroundColor: UIColor
     var buttonBackgroundColorAndLabelTextColor: UIColor
-    var emojiChoice: [String]
+    var emojiChoice: String
 }
 
 

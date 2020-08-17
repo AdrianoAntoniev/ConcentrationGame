@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Concentration {
+struct Concentration {
     private(set) var cards = [Card]()
     private var indexOfOneAndOnlyFaceUpCard: Int? {
         get {
@@ -31,7 +31,7 @@ class Concentration {
         }
     }
     var cardsRemaining = 0
-    var cardsFlippedOnce = [Int]()
+    var cardsFlippedOnce = [Card]()
     private var score = 0
     
     init(numberOfPairsOfCards: Int) {
@@ -46,11 +46,11 @@ class Concentration {
         cards.shuffle()
     }
     
-    func chooseCard(at index: Int) {
+    mutating func chooseCard(at index: Int) {
         assert(cards.indices.contains(index), "Concentration.chooseCard(at: \(index): chosen index not in the cards")
         if !cards[index].isMatched {
             if let matchIndex = indexOfOneAndOnlyFaceUpCard, matchIndex != index {
-                if cards[matchIndex].identifier == cards[index].identifier {
+                if cards[matchIndex] == cards[index] {
                     cards[matchIndex].isMatched = true
                     cards[index].isMatched = true
                     
@@ -60,14 +60,14 @@ class Concentration {
                 }
                 // Coloquei aqui esta linha para colocar duas cartas diferentes no array (cartas erradas)
                 else {
-                    if !cardsFlippedOnce.contains(cards[matchIndex].identifier) {
-                        cardsFlippedOnce.append(cards[matchIndex].identifier)
+                    if !cardsFlippedOnce.contains(cards[matchIndex]) {
+                        cardsFlippedOnce.append(cards[matchIndex])
                     } else {
                         score -= 1
                     }
                     
-                    if !cardsFlippedOnce.contains(cards[index].identifier) {
-                        cardsFlippedOnce.append(cards[index].identifier)
+                    if !cardsFlippedOnce.contains(cards[index]) {
+                        cardsFlippedOnce.append(cards[index])
                     } else {
                         self.score -= 1
                     }
@@ -83,18 +83,18 @@ class Concentration {
         return self.cardsRemaining == 0
     }
     
-    func restart() {
+    mutating func restart() {
         for index in cards.indices {
             cards[index].isFacedUp = false
             cards[index].isMatched = false
         }
         
         self.cardsRemaining = (cards.count / 2) + 1
-        cardsFlippedOnce = [Int]()
+        cardsFlippedOnce = [Card]()
         
     }
     
-    func getScore(gameIsRestarted: Bool) -> Int {
+    mutating func getScore(gameIsRestarted: Bool) -> Int {
         if gameIsRestarted {
             self.score = 0
         }

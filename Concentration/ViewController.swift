@@ -20,7 +20,7 @@ class ViewController: UIViewController {
         return (cardButtons.count + 1) / 2
     }
     private var theme: GameTheme = GameThemes.getThemeForGame()
-    private var emojiChoices: [String] = []
+    private var emojiChoices: String = ""
     private var isEndGame = false
     
     private(set) var flipCount = 0 {
@@ -70,14 +70,15 @@ class ViewController: UIViewController {
         }
     }
     
-    private var emoji = [Int: String]()
+    private var emoji = [Card: String]()
     
     private func emoji(for card: Card) -> String {
-        if emoji[card.identifier] == nil, emojiChoices.count > 0 {
-            emoji[card.identifier] = emojiChoices.remove(at: emojiChoices.count.arc4Random)
+        if emoji[card] == nil, emojiChoices.count > 0 {
+            let randomStringIndex = emojiChoices.index(emojiChoices.startIndex, offsetBy: emojiChoices.count.arc4Random)
+            emoji[card] = String(emojiChoices.remove(at: randomStringIndex))
         }
         
-        return emoji[card.identifier] ?? "?"
+        return emoji[card] ?? "?"
     }
     
     
@@ -85,7 +86,7 @@ class ViewController: UIViewController {
         game.restart()
         self.restartView()
         self.flipCount = 0
-        emoji = [Int: String]()
+        emoji = [Card: String]()
         self.updateViewFromModel()
     }
     

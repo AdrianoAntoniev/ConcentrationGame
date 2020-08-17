@@ -11,27 +11,27 @@ import UIKit
 struct GameThemes {
     private static var halloweenTheme = GameTheme(backgroundColor: .black,
                                                   buttonBackgroundColorAndLabelTextColor: .orange,
-                                                  emojiChoice: ["🦇", "🕸", "🧟‍♂️", "😈", "🎃", "👻", "🧛🏻‍♂️", "👹", "💀"])
+                                                  emojiChoice: "🦇🕸🧟‍♂️😈🎃👻🧛🏻‍♂️👹💀")
     
     private static var sportsTheme = GameTheme(backgroundColor: .cyan,
                                                buttonBackgroundColorAndLabelTextColor: .brown,
-                                               emojiChoice: ["⚽️", "🏀", "🏈", "🥊", "🏸", "🏓", "🥎", "🏋️", "🏄‍♂️"])
+                                               emojiChoice: "⚽️🏀🏈🥊🏸🏓🥎🏋️🏄‍♂️")
     
     private static var foodTheme = GameTheme(backgroundColor: .red,
                                                buttonBackgroundColorAndLabelTextColor: .yellow,
-                                               emojiChoice: ["🥩", "🍕", "🧆", "🍗", "🥮", "🍱", "🍫", "☕️", "🥐"])
+                                               emojiChoice: "🥩🍕🧆🍗🥮🍱🍫☕️🥐")
     
     private static var smileyTheme = GameTheme(backgroundColor: .yellow,
                                                buttonBackgroundColorAndLabelTextColor: .blue,
-                                               emojiChoice: ["😃", "😅", "😇", "😍", "🥰", "🤪", "🤩", "😡", "🥶"])
+                                               emojiChoice: "😃😅😇😍🥰🤪🤩😡🥶")
     
     private static var animalTheme = GameTheme(backgroundColor: .brown,
                                                buttonBackgroundColorAndLabelTextColor: .green,
-                                               emojiChoice: ["🐵", "🐮", "🦁", "🐼", "🐶", "🐭", "🐱", "🐰", "🐨"])
+                                               emojiChoice: "🐵🐮🦁🐼🐶🐭🐱🐰🐨")
     
     private static var flagTheme = GameTheme(backgroundColor: .magenta,
                                                buttonBackgroundColorAndLabelTextColor: .white,
-                                               emojiChoice: ["🇿🇦", "🇩🇪", "🇦🇲", "🇦🇹", "🇧🇷", "🇨🇳", "🇺🇸", "🇪🇸", "🇫🇷"])
+                                               emojiChoice: "🇿🇦🇩🇪🇦🇲🇦🇹🇧🇷🇨🇳🇺🇸🇪🇸🇫🇷")
     
     
     private static var themes: [GameTheme] = [halloweenTheme, sportsTheme, foodTheme, smileyTheme, animalTheme, flagTheme]
