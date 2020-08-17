@@ -9,7 +9,11 @@
 import UIKit
 
 class ViewController: UIViewController {
-    @IBOutlet private weak var flipCountLabel: UILabel!
+    @IBOutlet private weak var flipCountLabel: UILabel! {
+        didSet {
+            updateFlipCountLabel()
+        }
+    }
     @IBOutlet private var cardButtons: [UIButton]!
     @IBOutlet private weak var newGameButton: UIButton!
     @IBOutlet private weak var scoreLabel: UILabel!
@@ -20,13 +24,22 @@ class ViewController: UIViewController {
         return (cardButtons.count + 1) / 2
     }
     private var theme: GameTheme = GameThemes.getThemeForGame()
-    private var emojiChoices: String = ""
+    private var emojiChoices = ""
     private var isEndGame = false
     
     private(set) var flipCount = 0 {
         didSet {
-            flipCountLabel.text = "Flips: \(flipCount)"
+            updateFlipCountLabel()
         }
+    }
+    
+    func updateFlipCountLabel() {
+        let attributes: [NSAttributedString.Key:Any] = [
+            .strokeWidth : 5.0,
+            .strokeColor : theme.buttonBackgroundColorAndLabelTextColor
+        ]
+        let attributedString = NSAttributedString(string: "Flips: \(flipCount)", attributes: attributes)
+        flipCountLabel.attributedText = attributedString
     }
     
     var score = 0 {
