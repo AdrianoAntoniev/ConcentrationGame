@@ -14,6 +14,7 @@ class ViewController: UIViewController {
             updateFlipCountLabel()
         }
     }
+    
     @IBOutlet private var cardButtons: [UIButton]!
     @IBOutlet private weak var newGameButton: UIButton!
     @IBOutlet private weak var scoreLabel: UILabel!
